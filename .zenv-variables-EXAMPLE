@@ -1,0 +1,2 @@
+ZUSER="USERNAME"
+export ZUSER 

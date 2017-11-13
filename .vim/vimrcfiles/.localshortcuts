@@ -1,0 +1,23 @@
+" Local things that could be copied and customized
+
+" 20160907 - Compile template-latex
+" :nnoremap <leader>ect :! pdflatex -output-directory=/Users/USERNAME/Dropbox/UiB/Latex/ /Users/USERNAME/Dropbox/UiB/Latex/template.tex && pdflatex -output-directory=/Users/USERNAME/Dropbox/UiB/Latex/ /Users/USERNAME/Dropbox/UiB/Latex/template.tex && open /Users/USERNAME/Dropbox/UiB/Latex/template.pdf<cr>
+" :nnoremap <leader>ect :! pdflatex -output-directory=~/Dropbox/UiB/Latex/ ~/Dropbox/UiB/Latex/template.tex && pdflatex -output-directory=~/Dropbox/UiB/Latex/ ~/Dropbox/UiB/Latex/template.tex && open ~/Dropbox/UiB/Latex/template.pdf<cr>
+
+" 20160907 - Shortcut to opening the latex template in a split
+:nnoremap <leader>et :vsplit ~/Dropbox/UiB/Latex/template.tex<cr>
+
+" 20170410 - Shortcut to Maksimer-journal a split
+:nnoremap <leader>er :vsplit ~/Dropbox/Vigtigt/maksimer-journal.txt<cr>
+
+" 20170410 - Shortcut to Maksimer-journal a split
+:nnoremap <leader>em :vsplit ~/Dropbox/Vigtigt/maksimer-todo.txt<cr>
+
+" 20170331 - Shortcut to journal a split
+:nnoremap <leader>ej :vsplit ~/Dropbox/Vigtigt/journal.xml<cr>
+
+" 230217 - Shortcut to open useful ruby-commands-file in a split
+" :nnoremap <leader>er :vsplit ~/Dropbox/Vigtigt/rails/useful-rails-commands.rb<cr>
+
+
+

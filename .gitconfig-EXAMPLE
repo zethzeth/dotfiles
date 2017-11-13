@@ -1,0 +1,15 @@
+[user]
+	name = My Name
+	email = EmailToGithubAccount
+[core]
+	editor = /usr/local/bin/vim
+[credential]
+	helper = osxkeychain
+[github]
+	user = GithubUsername
+	token = GitHubToken
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false

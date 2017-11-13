@@ -1,0 +1,722 @@
+" Global shortcuts and settings (being sourced by all machines in the .bash_profile )
+
+
+"    
+"    
+"    _________.__                   __                 __          
+"   /   _____/|  |__   ____________/  |_  ____  __ ___/  |_  ______
+"   \_____  \ |  |  \ /  _ \_  __ \   __\/ ___\|  |  \   __\/  ___/
+"   /        \|   Y  (  <_> )  | \/|  | \  \___|  |  /|  |  \___ \ 
+"  /_______  /|___|  /\____/|__|   |__|  \___  >____/ |__| /____  >
+"          \/      \/                        \/                 \/ 
+"       
+" gg=G      -> fixes indentation
+" :g/^$/d   -> Delete empty lines in file
+" :so $MYVIMRC -> Sourcing ~/.vimrc
+" zc        -> Make fold
+" zo        -> Open fold
+" zR        -> Open all folds
+" zC        -> A stronger make fold (whatever)
+" zO        -> A stronger open fold (whatever)
+" :set foldmethod=indent    -> Folds based on indents
+" :echo colors_name     ->   Prints colorscheme name
+" :colors               ->   Prints colorscheme name
+" CTRL-w |    -> Takes two sets of keypresses, but it maximized the split
+" CTRL-w =    -> Equalizes the split-sizes
+" :e .        -> Browse current working directory
+"
+"
+""" GOOD TO KNOW
+"
+" If copying to clipboard doesn work ("+y or "=y), then update vim (v. 7.3
+" didnt work and v. 7.4 did work). 
+"
+"
+""" GIT & VIM-shortcuts
+"
+" gitk HEAD @{u}  -> Opens an editor, where it's easy to follow what has happend to a project
+" git ls-tree -r master --name-only   -> List of all files
+" git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'   -> List of all files including deleted files 
+"
+"
+""" Zsh-shortcuts
+" take    -> creates and opens dir
+" zsh -xv      -> Running zshell in debug-mode (nice!)
+" ls **/wp-*		-> Using ls to search
+" ls dro/mak/bb/la/			-> Smart-paths (or however they work
+
+
+" 
+" 
+"  .___                 __         .__  .__          __  .__               
+"  |   | ____   _______/  |______  |  | |  | _____ _/  |_|__| ____   ____  
+"  |   |/    \ /  ___/\   __\__  \ |  | |  | \__  \\   __\  |/  _ \ /    \ 
+"  |   |   |  \\___ \  |  |  / __ \|  |_|  |__/ __ \|  | |  (  <_> )   |  \
+"  |___|___|  /____  > |__| (____  /____/____(____  /__| |__|\____/|___|  /
+"           \/     \/            \/               \/                    \/ 
+" 
+" When installing vim, then remember to start by upgrading it to the latest
+" version, then check that you run the right vim '/usr/local/bin/vim' and not
+" '/usr/bin/vim'. With a never version (8.0) then the clipboard is fixed. In
+" older versions (fx 7.4), then the clipboard is a bitch!!
+" And even so, in v8.0, then the clipboard is a bitch, without this .vimrc-file. So the easiest way is to
+" navigate to this vimrc-file (whereever it is), mark and copy it all ( "+y ) and then write :e $MYVIMRC 
+" and then paste it ( "+p ). Don't forget to source the .vimrc-file.
+" 
+" Once installed, then insert this line in :e $MYVIMRC
+" source /Users/THECOMPUTERUSER/Dropbox/Vim-bash-n-stuff/Global-vim/Global/.vimrc
+"
+" Then create a new folder in ~/Dropbox/Vim-bash-n-stuff/Global-vim/... and put a .vimrc-file in there. 
+" And then insert this line in :e $MYVIMRC
+" source /Users/THECOMPUTERUSER/Dropbox/Vim-bash-n-stuff/Global-vim/[COMPUTERNAME]/.vimrc
+" ... And then copy the file-handling lines from the bottom of this file in there and change THECOMPUTERUSER with the computer user-name.
+"
+" Install Vundle, but running this command: 
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" Source: https://github.com/VundleVim/Vundle.vim
+" Then reopen Vim and run   :PluginInstall    = VOILA!
+
+
+
+
+"
+"  ____   ____.___   _____ ___________________  
+"  \   \ /   /|   | /     \\______   \_   ___ \ 
+"   \   Y   / |   |/  \ /  \|       _/    \  \/ 
+"    \     /  |   /    Y    \    |   \     \____
+"     \___/   |___\____|__  /____|_  /\______  /
+"                         \/       \/        \/
+"       
+
+""" META-STUFF
+
+" Define LEADER-key
+let mapleader = ","
+
+" END OF META STUFF
+
+
+
+
+
+"  
+"  ____   ____                .___.__          
+"  \   \ /   /_ __  ____    __| _/|  |   ____  
+"   \   Y   /  |  \/    \  / __ | |  | _/ __ \ 
+"    \     /|  |  /   |  \/ /_/ | |  |_\  ___/ 
+"     \___/ |____/|___|  /\____ | |____/\___  >
+"                      \/      \/           \/ 
+"
+" VUNDLE (put path under here and the restart Vim and run :PluginInstall        
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Nerdtree
+Plugin 'scrooloose/nerdtree'
+nmap <leader>t :NERDTree<CR>
+
+" Minimap
+Plugin 'severin-lemaignan/vim-minimap'
+" TO OVERRIDE <leader>mm then do this:
+" let g:minimap_show='<leader>ms'
+" let g:minimap_update='<leader>mu'
+" let g:minimap_close='<leader>gc'
+" let g:minimap_toggle='<leader>gt'
+
+" CTRL-P
+" Plugin 'kien/ctrlp.vim'
+" REMEMBER THAT <c-p> is mapped to 'Up-arrow' on a good machine
+
+" Rainbow parenthesis ( https://github.com/luochen1990/rainbow )
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+" Tagbar https://github.com/majutsushi/tagbar.git
+" Plugin 'majutsushi/tagbar'
+
+" Powerline for Vim
+" Plugin 'powerline/powerline'
+
+" Airline for Vim ( https://github.com/vim-airline/vim-airline )
+Plugin 'vim-airline/vim-airline'
+
+" CSV.vim ( https://github.com/chrisbra/csv.vim )
+Plugin 'chrisbra/csv.vim'
+
+" Vdebug (Debugger for Vim)
+Plugin 'joonty/vdebug'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+"   
+"      _____ ___.  ___.          
+"     /  _  \\_ |__\_ |_________ 
+"    /  /_\  \| __ \| __ \_  __ \
+"   /    |    \ \_\ \ \_\ \  | \/
+"   \____|__  /___  /___  /__|   
+"           \/    \/    \/       
+"   
+" 20170529 - Journal abbreviation
+" WEEKLY
+iabbrev zjaw 
+\<CR><weekly>
+\<CR>  <period>
+\<CR>    <start_date>2017mmdd</start_date>
+\<CR>    <enddate>2017mmdd</enddate>
+\<CR>  <period>
+\<CR>  <TF_skim_last_weekly_review></TF_skim_last_weekly_review>
+\<CR>  <last_weekly_performance_review_evaluation>
+\<CR>
+\<CR>  </last_weekly_performance_review_evaluation>
+\<CR>  <total_tracked_time></total_tracked_time>
+\<CR>  <most_logged_tasks>
+\<CR>    <tasks>
+\<CR>      <task>
+\<CR>        <task_name></task_name>
+\<CR>        <percent_weekly_time_spent_on_task></percent_weekly_time_spent_on_task>
+\<CR>      </task> 
+\<CR>    </tasks>
+\<CR>    <most_logged_tasks_comment>
+\<CR>
+\<CR>    </most_logged_tasks_comment>
+\<CR>  </most_logged_tasks>
+\<CR>  <most_logged_clients>
+\<CR>    <clients>
+\<CR>      <client>
+\<CR>        <client_name></client_name>
+\<CR>        <percent_weekly_time_spent_on_client></time_spent_on_client>
+\<CR>      </client> 
+\<CR>    </clients>
+\<CR>    <most_logged_clients_comment>
+\<CR>
+\<CR>    </most_logged_clients_comment>
+\<CR>  </most_logged_clients>
+\<CR>  <how_could_i_have_done_last_week_better>
+\<CR>    <elaborated_comment>
+\<CR>    </elaborated_comment>
+\<CR>    <in_one_word>
+\<CR>      <word></word>
+\<CR>    </in_one_word>
+\<CR>  </how_could_i_have_done_last_week_better>
+\<CR>  <what_would_i_add_more_of>
+\<CR>    <helper>If there was 25 hours in a day instead of 24 hours - what would I do with that extra hour?</helper>
+\<CR>    <addition></addition>
+\<CR>  </what_would_i_add_more_of>
+\<CR>  <which_dreams_am_i_working_towards>
+\<CR>    <dream></dream>
+\<CR>  <which_dreams_am_i_working_towards>
+\<CR>  <instantly_complete_tasks>
+\<CR>    <helper>If I could instantly complete any of my tasks - which would it be and why? The surrealistic method is imagining that I'm a nigerian prince with almight power and money - how would I get the task done then? The realistic method is the most efficient way to do it from my perspective.</helper>
+\<CR>    <tasks>
+\<CR>      <task_name>
+\<CR>
+\<CR>      </task_name>
+\<CR>    </tasks>
+\<CR>    <instantly_complete_tasks_comment>
+\<CR>    
+\<CR>    </instantly_complete_tasks_comment>
+\<CR>  </instantly_complete_tasks>
+\<CR>  <performance_review>
+\<CR>    <helper>A week from now - doing a review of yourself. How should that review sound?</helper>
+\<CR>    <area>
+\<CR>      <career>
+\<CR>
+\<CR>      </career>
+\<CR>      <surroundings>
+\<CR>
+\<CR>      </surroundings>
+\<CR>      <self>
+\<CR>
+\<CR>      </self>
+\<CR>    </area>
+\<CR>  </performance_review>
+\<CR>  <other>
+\<CR>    <questions>
+\<CR>      <question>
+\<CR>        <the_question>
+\<CR>        </the_question>
+\<CR>        <the_answer>
+\<CR>        </the_answer>
+\<CR>      </question>
+\<CR>    </questions>
+\<CR>    <comment>
+\<CR>    </comment>
+\<CR>  </other>
+\<CR>  <following_weeks_focus_points>
+\<CR>    <helper>Short points that I should focus on the following week</helper>
+\<CR>    <point>
+\<CR>      <description>
+\<CR>        
+\<CR>      </description>
+\<CR>      <TF_usage></TF_usage>
+\<CR>      <TF_effect></TF_effect>
+\<CR>      <TF_overall_evaluation></TF_overall_evaluation>
+\<CR>    </point>
+\<CR>  </following_weeks_focus_points>
+\<CR></weekly>
+
+" 20170529 - Journal abbreviation
+" SHORT
+iabbrev zjas 
+\<CR><daily>
+\<CR>  <date>2017mmdd</date>
+\<CR>  <hours_logged_before_start></hours_logged_before_start>
+\<CR>  <TF_started_sooner></TF_started_sooner>
+\<CR>  <started_sooner_comment></started_sooner_comment>
+\<CR>  <todays_most_important_operational_task></todays_most_important_operational_task>
+\<CR>  <other_tasks_on_mind>
+\<CR>    <task></task>
+\<CR>  </other_tasks_on_mind>
+\<CR></daily>
+
+" 20170502 - Journal abbreviation
+" LONG
+iabbrev zjal 
+\<CR>  <daily_elaboration>
+\<CR>    <excel></excel>
+\<CR>    <calendar></calendar>
+\<CR>    <ticktick></ticktick>
+\<CR>    <skim_yesterdays_notes></skim_yesterdays_notes>
+\<CR>    <yesterday>
+\<CR>      <how_could_yesterday_have_been_better>
+\<CR>        <elaborated_answer>
+\<CR>
+\<CR>        </elaborated_answer>
+\<CR>        <in_one_word>
+\<CR>          <word></word> 
+\<CR>        </in_one_word>
+\<CR>      </how_could_yesterday_have_been_better>
+\<CR>      <yesterday_redone_if_i_was_a_prince>
+\<CR>
+\<CR>      </yesterday_redone_if_i_was_a_prince>
+\<CR>      <yesterday_redone_obligated_to_change_something>
+\<CR>
+\<CR>      </yesterday_redone_obligated_to_change_something>
+\<CR>      <what_didnt_i_predict_would_happen_yesterday>
+\<CR>
+\<CR>      </what_didnt_i_predict_would_happen_yesterday>
+\<CR>    </yesterday>
+\<CR>    <today>
+\<CR>      <daily_plan>
+\<CR>
+\<CR>      </daily_plan>
+\<CR>      <how_will_i_do_perform_the_tasks>
+\<CR>
+\<CR>      </how_will_i_do_perform_the_tasks>
+\<CR>    </today>
+\<CR>    <comment>
+\<CR>      <helper>Other comments/sections...</helper>
+\<CR>
+\<CR>    </comment>
+\<CR>    <tomorrow>
+\<CR>      <describe_today_in_the_future>
+\<CR>        <helper>If someone ask me tomorrow (or later) to describe today - how would I like to be able to say to them?</helper>
+\<CR>
+\<CR>      </describe_today_in_the_future>
+\<CR>    </tomorrow>
+\<CR>  </daily_elaboration>
+
+" 011216 - Insert timestamp when ENTER-key is pressed 
+" :inoremap <CR> <Esc>:put =strftime('%H%M%S')<CR>A
+" This will disable the shortcut, but it will also wreck abbreviations. To fix abbreviations, then comment out the line below and restart vim
+" :inoremap <CR> <CR>
+    
+" 110916 - Shortcut to making an enumerate-environment
+iabbrev zee \begin{enumerate}<CR>\item <CR>\end{enumerate}
+iabbrev zea \begin{align}<CR>& <CR>\end{align}
+iabbrev zat \text{} 
+
+" 090916 - Add abbreviation for Latex-comments and disregarding text in word
+" count. 
+iabbrev zccc %%%%qqCOMM-STARTqq%%%%<CR>%TC:ignore\<CR>\iffalse\<CR>
+iabbrev zccce %%%%qqCOMM-ENDqq%%%%\<CR>\fi\<CR>%TC:endignore\<CR>
+iabbrev zttt %%%%qqTCIGN-STARTqq%%%%\<CR>%TC:ignore\<CR>
+iabbrev zttte %%%%qqTCIGN-ENDqq%%%%\<CR>%TC:endignore\<CR>
+
+" END OF ABBR
+
+
+
+"     
+"     _________                                
+"    /   _____/ ______________  __ ___________ 
+"    \_____  \_/ __ \_  __ \  \/ // __ \_  __ \
+"    /        \  ___/|  | \/\   /\  ___/|  | \/
+"   /_______  /\___  >__|    \_/  \___  >__|   
+"           \/     \/                 \/       
+"
+
+" 2017-08-12 - Disable bell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" Make the split below
+set splitbelow
+
+" Make the split to the right
+set splitright
+
+" Show how far through a file (percentage-wise) you are
+" with the command:
+" :echo LP()
+function! LP()
+    return line('.') * 100 / line('$') . '%'
+endfunction
+
+" Show higlighting groups for current word (use by position
+" cursor on word and press CTRL-SHIFT-p ( <C-S-P> )
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+
+" Funky indentation
+function! MyPoorIndentGuide(clear)
+    if !exists("w:ids")
+        let w:ids=[]
+    endif
+    if a:clear
+        call map(w:ids, 'matchdelete(v:val)')
+        unlet! w:ids
+        return
+    endif
+    hi HiTabs ctermfg=white guibg=white ctermbg=Yellow
+    hi HiSpaces3 ctermfg=blue guibg=blue ctermbg=black
+    hi HiSpaces6 ctermfg=yellow guibg=yellow ctermbg=DarkGreen
+    hi HiSpaces9 ctermfg=green guibg=green ctermbg=Green
+    hi HiSpaces12 ctermfg=green guibg=green ctermbg=Cyan
+    hi HiSpaces15 ctermfg=green guibg=green ctermbg=Blue
+    hi HiSpaces18 ctermfg=green guibg=green ctermbg=LightBlue
+    call add(w:ids, matchadd('HiTabs', '\t'))
+    for i in range(3, 9, 3)
+        exe printf("call add(w:ids, matchadd('HiSpaces%d', '\\s\\{%d\\}', %d))", i, i, i+10)
+    endfor
+endfunction
+
+function! TIG()
+    if !exists('#MyIndentGuideGroup')
+        augroup MyIndentGuideGroup
+            au!
+            au WinEnter * call MyPoorIndentGuide(0)
+        augroup end
+        call MyPoorIndentGuide(0)
+    else
+        augroup MyIndentGuideGroup
+            au!
+        augroup end
+        augroup! MyIndentGuideGroup
+        call MyPoorIndentGuide(1)
+    endif
+endfunction
+
+com! MyIndentGuideToggle :call TIG()
+
+" 20170511 - Adding file-name to the statusbar
+set laststatus=2
+set statusline+=%F
+ 
+" 051116 - Reload VIMRC every time the VIMRC is saved      
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+
+
+" 090916 - Redefine Visual-Block mode to :Vb
+" Remember the bug about, that you have to type I to go to insert-mode for visual-block. And after you do, then it will only show it on line 1, until you've typed everything and then press ESC - j, then it will copy it to the other lines.
+command! Vb normal! <C-v>
+
+" 090916 - This decides if Latex should help with indentation, based on the filetype
+" filetype indent on
+
+" 090916 - Make backspace work like most other apps
+set backspace=2
+
+autocmd! bufwritepost .vimrc source %
+
+"Better Copy and paste
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+"Quicksave command
+noremap <C-Z> :update<CR>
+vnoremap <C-Z> <C-C>:update<CR>
+inoremap <C-Z> <C-0>:update<CR>
+
+"Easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+"Easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+"Map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" 20170516 - Better indentation in PHPstorm
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Show whitespace
+" MUST be inserted before the colorscheme command
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave *match ExtraWhitespace /\s\+$/
+
+" Colorschemes
+set t_Co=256
+" color koehler
+" color blue
+try
+  " color zzelflord
+  color solarized
+catch /^Vim\%((\a\+)\)\=:E185/
+  color elflord
+endtry
+
+"Enable syntax highlighting
+filetype off
+" filetype plugin indent on " COMMENTED OUT, SINCE IT'S COMING FURTHER DOWN
+syntax on
+
+"Show line numbers and length
+set number "show line numbers
+" set tw=79  "width of document (used by gd)
+" set wrap "automatically wrap on load
+" set fo-=t  "don't automatically wrap text when typing
+" set wrap linebreak nolist "Break at linebreak
+"set colorcolumn=80 "Color the 80's column
+highlight ColorColumn ctermbg=233
+:set wrap
+:set linebreak
+:set nolist  " list disables linebreak
+
+"Easier formatting of paragraphs
+vmap Q gq
+nmap Q gqap
+
+"Useful settings
+set history=700
+set undolevels=700
+
+" Tabs and spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set shiftround
+
+" Make tabs into spaces (sucks!)
+" set expandtab
+
+"Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+"Disable stupid backup and swap files
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Python folding
+" FTplugin
+set nofoldenable
+set foldmethod=indent   
+set foldnestmax=10
+set foldlevel=2
+
+" Map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+"Tab shortcuts"
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
+" On ubuntu (running Vim in gnome-terminal)
+" The reason for the double-command on <C-c> is due to some weirdness with the
+" X clipboard system.
+vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+
+" Python commenting "
+vnoremap # :s#^#\##<cr>:nohl<cr>
+vnoremap -# :s#^\###<cr>:nohl<cr>
+
+
+" Move between splits "
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Change showmatch color (matching brackets) "
+hi MatchParen cterm=none ctermbg=green ctermfg=blue
+
+" Quickly edit/reload the vimrc file
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+:nnoremap <leader>eg :vsplit ~/.vim/vimrcfiles/.globalvimrc<cr>
+
+" Insert a single character
+:nmap <Space> i_<Esc>r
+
+" Start Vim without highlights
+:nohl
+
+" Add normal cursor-behavior on screen (going up and down on softwrap-lines)
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+noremap <silent> $ g$
+
+" END OF SERVER
+
+
+
+
+
+
+" Better navigation through omnicomplete option list
+" http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+set completeopt=longest,menuone
+function! OmniPopup(action)
+  if pumvisible()
+    if a:action = 'j'
+      return "\<C-N>"
+    elseif a:action = 'k'
+      return "\<C-P>"
+    endif
+  endif
+  return a:action
+endfunction
+
+" This is something for WordCounting. But it depends on some 'detex'-command
+" from the terminal. I don't know what that is... :-/
+function! WC()
+  let filename = expand("%")
+  let cmd = "detex " . filename . " | wc -w | tr -d [:space:]"
+  let result = system(cmd)
+  echo result . " words"
+endfunction
+
+command! WC call WC()
+
+
+"  
+"  ___________.__.__         .__                       .___.__  .__                
+"  \_   _____/|__|  |   ____ |  |__ _____    ____    __| _/|  | |__| ____    ____  
+"   |    __)  |  |  | _/ __ \|  |  \\__  \  /    \  / __ | |  | |  |/    \  / ___\ 
+"   |     \   |  |  |_\  ___/|   Y  \/ __ \|   |  \/ /_/ | |  |_|  |   |  \/ /_/  >
+"   \___  /   |__|____/\___  >___|  (____  /___|  /\____ | |____/__|___|  /\___  / 
+"       \/                 \/     \/     \/     \/      \/              \//_____/  
+"  
+
+"
+"" MUST BE ABSOLUTE PATH FROM /Users/ 
+
+" 20160907 - Compile template-latex
+" :nnoremap <leader>ect :! pdflatex -output-directory=/Users/THECOMPUTERUSER/Dropbox/UiB/Latex/ /Users/THECOMPUTERUSER/Dropbox/UiB/Latex/template.tex && pdflatex -output-directory=/Users/THECOMPUTERUSER/Dropbox/UiB/Latex/ /Users/THECOMPUTERUSER/Dropbox/UiB/Latex/template.tex && open /Users/THECOMPUTERUSER/Dropbox/UiB/Latex/template.pdf<cr>
+
+" 20160907 - Shortcut to opening the latex template in a split
+" :nnoremap <leader>et :vsplit /Users/THECOMPUTERUSER/Dropbox/UiB/Latex/template.tex<cr>
+
+" 20170410 - Shortcut to Maksimer-journal a split
+" :nnoremap <leader>em :vsplit /Users/THECOMPUTERUSER/Dropbox/Vigtigt/maksimer-journal.txt<cr>
+
+" 20170331 - Shortcut to journal a split
+" :nnoremap <leader>ej :vsplit /Users/THECOMPUTERUSER/Dropbox/Vigtigt/journal.txt<cr>
+
+" 230217 - Shortcut to open useful ruby-commands-file in a split
+" :nnoremap <leader>er :vsplit /Users/THECOMPUTERUSER/Dropbox/Vigtigt/rails/useful-rails-commands.rb<cr>
+
+" END OF LOCAL STUFF
+
+
+"   
+"    _______                            __          _____  _____ 
+"    \      \   ______  _  __   _______/  |_ __ ___/ ____\/ ____\
+"    /   |   \_/ __ \ \/ \/ /  /  ___/\   __\  |  \   __\\   __\ 
+"   /    |    \  ___/\     /   \___ \  |  | |  |  /|  |   |  |   
+"   \____|__  /\___  >\/\_/   /____  > |__| |____/ |__|   |__|   
+"           \/     \/              \/                            
+"   
+"   
+"
+" COLORSCHEME-THINGYS
+
+" Quickly change colorscheme (leader-a and leader-s)
+:nnoremap <leader>a :color zzelflord<cr>
+:nnoremap <leader>s :color solarized<cr>
+
+
+" Colorscheme-checklist
+" - You can get a list of the default highlighting groups by looking up :help highlight-groups.
+"
+" ... Other things:
+" - can you see the cursor?
+" - enable line & columns highlighting (:set cul cuc). Can you see a crosshair for the cursor position?
+" - enable line numbering (:set number). Can you see the line numbers?
+" - split a window with :split and :vsplit. Are the status lines and vertical separators clearly visible? Can you tell which is the current window?
+" - enable hlsearch (:set hls) and search for a pattern. Can you see the matches?
+" - go into visual mode (shift-V). Can you easily see which line is selected? Can you differentiate between visual mode and highlighted search matches?
+" - fold some text (:set foldmethod=manual then make a visual selection and press zf). Can you identify the folded text?
+" - bring up the autocomplete popup menu (type the first few characters of a word, then press ctrl-n). Is it clear which item in the list is selected?
+" - position your cursor on some brackets. Does the matching bracket stand out in a way that is identifiable? Could the matching bracket be confused with the cursor?
+
+
+
+" Wrap visual selection in an HTML tag.
+vmap <Leader>w <Esc>:call VisualHTMLTagWrap()<CR>
+function! VisualHTMLTagWrap()
+  let tag = input("Tag to wrap block: ")
+  if len(tag) > 0
+    normal `>
+    if &selection == 'exclusive'
+      exe "normal i</".tag.">"
+    else
+      exe "normal a</".tag.">"
+    endif
+    normal `<
+    exe "normal i<".tag.">"
+    normal `<
+  endif
+endfunction
+
+
