@@ -1,13 +1,35 @@
 # Zeth's dotfiles
-This setup is inspired by this post: [https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) and this: [https://news.ycombinator.com/item?id=11070797](https://news.ycombinator.com/item?id=11070797) (StreakyCobra's comment). 
 
-## Programs
+## Installation
 
+This setup is inspired by this post: [https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) and this: [https://news.ycombinator.com/item?id=11070797](https://news.ycombinator.com/item?id=11070797) (StreakyCobra's comment).
 
+### This has already been done:
+
+  - Ensuring that this line is in the `.zshrc`-file: `alias config='/usr/bin/git --git-dir=$ZUSERHOMEDIR/.zcfg/ --work-tree=$ZUSERHOMEDIR'` ... What it does it, that I can write 'config' (maybe from anywhere) and then it'll show my the files that I've changed from my monitored dotfile-setup.
+  - Ensuring that the `.zcfg`-folder is in the `.gitignore`-file.
+
+### This must be done:
+
+  - Do a --bare-clone of this repo: `git clone --bare https://github.com/zethodderskov/dotfiles.git $HOME/.zcfg` (Remember to give the absolut path, if it's a root user doing this operation).
+  - Checkout the files (to the home-dir):  `config checkout` (and rename/delete existing files blocking the checkout).
+  - Do this: `config config --local status.showUntrackedFiles no`
+  - Then change content of the `.zenv-variables`-file, so it matches the user.
+  - Clone Zsh (http://ohmyz.sh/): `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+  - Install Powerlevel-theme: `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k` (Remember to give the absolut path, if it's a root user doing this operation).
+  - Change default shell:  `which zsh` and then `chsh -s /bin/zsh`
+  - Then logout and login and check that it's Zshell being used with the correct theme.
+  - Then clone Vundle: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+  - Go to the `$HOME`-folder (`/root/` for root-user), and ensure that the `.vimrc`-file in there has this line: `source ~/.vim/vimrcfiles/.globalvimrc` (customized to the users home-dir).
+  - Then open vim and write: `:PluginInstall`
+
+... And that should be the basic setup. See below for an elaborated version.
+
+## Troubleshooting (in-depth installation)
 
 **VIM**
 ...On Ubuntu
-  - First do this: `sudo apt-get install software-properties-common python-software-properties` [http://lifeonubuntu.com/ubuntu-missing-add-apt-repository-command/](http://lifeonubuntu.com/ubuntu-missing-add-apt-repository-command/). 
+  - First do this: `sudo apt-get install software-properties-common python-software-properties` [http://lifeonubuntu.com/ubuntu-missing-add-apt-repository-command/](http://lifeonubuntu.com/ubuntu-missing-add-apt-repository-command/).
   - Then do this: [http://tipsonubuntu.com/2016/09/13/vim-8-0-released-install-ubuntu-16-04/](http://tipsonubuntu.com/2016/09/13/vim-8-0-released-install-ubuntu-16-04/)
 
 ...On Mac... With Brew (obviously).
@@ -15,18 +37,12 @@ This setup is inspired by this post: [https://developer.atlassian.com/blog/2016/
 After the installation, then customize it with the `.vim`-folder from this repo. Get all the files and then it should as simple as running Vundle's `:PluginInstall` ... Vundle-doc: [https://github.com/VundleVim/Vundle.vim](https://github.com/VundleVim/Vundle.vim). Make sure that the Vundle-path in the `.globalvimrc`-file is correct.
 
 
-
 **ZSH**
-Get from here: [http://ohmyz.sh/](http://ohmyz.sh/). 
+Get from here: [http://ohmyz.sh/](http://ohmyz.sh/).
 Customize with `.zshrc` from this repo.
 
-Change shell with:
-`which zsh`
-`chsh -s /bin/zsh`
-
 Then install this theme: [https://github.com/bhilburn/powerlevel9k](https://github.com/bhilburn/powerlevel9k)
- - The key to make the fonts work is to change the font in your Terminal to use the correct font (12pt Meslo Lg M Regular for Powerline). The fonts may be fount here: [https://github.com/powerline/fonts](https://github.com/powerline/fonts). 
-
+ - The key to make the fonts work is to change the font in your Terminal to use the correct font (12pt Meslo Lg M Regular for Powerline). The fonts may be fount here: [https://github.com/powerline/fonts](https://github.com/powerline/fonts).
 
 
 **Composer, Node and NPM**

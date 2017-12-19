@@ -505,6 +505,9 @@ catch /^Vim\%((\a\+)\)\=:E185/
   color elflord
 endtry
 
+" 2017-12-19 - Set dark BG
+set background=dark
+
 "Enable syntax highlighting
 filetype off
 " filetype plugin indent on " COMMENTED OUT, SINCE IT'S COMING FURTHER DOWN

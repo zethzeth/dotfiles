@@ -1,3 +1,5 @@
 source ~/.vim/vimrcfiles/.globalvimrc
 source ~/.vim/vimrcfiles/.ideavimrc
 
+noremap $ $
+

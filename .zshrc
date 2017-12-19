@@ -93,7 +93,7 @@ DEFAULT_USER=${ZUSER}
 plugins=(git)
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/${ZUSER}/.oh-my-zsh
+export ZSH=${ZUSERHOMEDIR}/.oh-my-zsh
 
 # I don't know why this has to be sourced... Hmm...
 source $ZSH/oh-my-zsh.sh
@@ -147,4 +147,4 @@ alias .........="cd ../../../../../../../.."
 
 ### DOTFILE-SETUP
 #
-alias config="/usr/bin/git --git-dir=/Users/${ZUSER}/.zcfg/ --work-tree=/Users/${ZUSER}"
+alias config="/usr/bin/git --git-dir=${ZUSERHOMEDIR}/.zcfg/ --work-tree=${ZUSERHOMEDIR}"
