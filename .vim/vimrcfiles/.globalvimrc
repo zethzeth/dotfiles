@@ -1,6 +1,5 @@
 " Global shortcuts and settings (being sourced by all machines in the .bash_profile )
 
-
 "    
 "    
 "    _________.__                   __                 __          
@@ -24,6 +23,7 @@
 " CTRL-w |    -> Takes two sets of keypresses, but it maximized the split
 " CTRL-w =    -> Equalizes the split-sizes
 " :e .        -> Browse current working directory
+" :set noic   -> Makes * (search) case insensitive
 "
 "
 """ GOOD TO KNOW
