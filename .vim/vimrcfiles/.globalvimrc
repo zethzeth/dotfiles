@@ -181,9 +181,9 @@ filetype plugin indent on    " required
 "   
 
 " 011216 - Insert timestamp when ENTER-key is pressed 
-" :inoremap <CR> <Esc>:put =strftime('%H%M%S')<CR>A
+" :inoremap <CR> <Esc>:put =strftime('%H%M%S-')<CR>A
 " This will disable the shortcut, but it will also wreck abbreviations. To fix abbreviations, then comment out the line below and restart vim
-" :inoremap <CR> <CR>
+:inoremap <CR> <CR>
     
 " 110916 - Shortcut to making an enumerate-environment
 iabbrev zee \begin{enumerate}<CR>\item <CR>\end{enumerate}

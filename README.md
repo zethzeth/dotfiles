@@ -15,6 +15,7 @@ This setup is inspired by this post: [https://developer.atlassian.com/blog/2016/
   - Checkout the files (to the home-dir):  `config checkout` (and rename/delete existing files blocking the checkout).
   - Do this: `config config --local status.showUntrackedFiles no`
   - Then change content of the `.zenv-variables`-file, so it matches the user.
+  - Then install Zsh ( https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e ).
   - Clone Zsh (http://ohmyz.sh/): `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
   - Install Powerlevel-theme: `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k` (Remember to give the absolut path, if it's a root user doing this operation).
   - Change default shell:  `which zsh` and then `chsh -s /bin/zsh`
