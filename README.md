@@ -11,20 +11,41 @@ This setup is inspired by this post: [https://developer.atlassian.com/blog/2016/
 
 ### This must be done:
 
-  - Do a --bare-clone of this repo: `git clone --bare https://github.com/zethodderskov/dotfiles.git $HOME/.zcfg` (Remember to give the absolut path, if it's a root user doing this operation).
-  - Checkout the files (to the home-dir):  `config checkout` (and rename/delete existing files blocking the checkout).
+  - Do a --bare-clone of this repo:   
+    Regular user: `git clone --bare https://github.com/zethodderskov/dotfiles.git $HOME/.zcfg`    
+    Root: `git clone --bare https://github.com/zethodderskov/dotfiles.git /root/.zcfg` 
+  - Add this to the `.bashrc`-file temporarily (in the bottom):   
+    Regular user: `alias config='/usr/bin/git --git-dir=$ZUSERHOMEDIR/.zcfg/ --work-tree=$ZUSERHOMEDIR'`   
+    Root: `alias config='/usr/bin/git --git-dir=/root/.zcfg/ --work-tree=/root'`
+  - Checkout the files (to the home-dir):  `config checkout`
+  - There will most likely be a couple of file-collisions, which can be moved and backed up with this:
+```
+mkdir -p .config-backup && \
+config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+xargs -I{} mv {} .config-backup/{}
+```
   - Do this: `config config --local status.showUntrackedFiles no`
   - Then change content of the `.zenv-variables`-file, so it matches the user.
   - Then install Zsh ( https://gist.github.com/derhuerst/12a1558a4b408b3b2b6e ).
   - Clone Zsh (http://ohmyz.sh/): `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-  - Install Powerlevel-theme: `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k` (Remember to give the absolut path, if it's a root user doing this operation).
-  - Change default shell:  `which zsh` and then `chsh -s /bin/zsh`
+  - Install Powerlevel-theme.   
+    Regular user: `git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k` .    
+    Root: `git clone https://github.com/bhilburn/powerlevel9k.git /root/.oh-my-zsh/custom/themes/powerlevel9k` .
+  - Change default shell:  `chsh -s $(which zsh)`
   - Then logout and login and check that it's Zshell being used with the correct theme.
   - Then clone Vundle: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
   - Go to the `$HOME`-folder (`/root/` for root-user), and ensure that the `.vimrc`-file in there has this line: `source ~/.vim/vimrcfiles/.globalvimrc` (customized to the users home-dir).
   - Then open vim and write: `:PluginInstall`
 
 ... And that should be the basic setup. See below for an elaborated version.
+
+### To pull the latest changes
+
+In order to pull the latest changes, then it's a good idea to run a `config status` first, to see if some local changes has been made. But if not, then this will get the latest files:
+
+`config reset --hard` (removes local changes to avoid merge conflicts)
+
+`config pull -s recursive -X theirs` (pulls the latest changes and uses the repository's versions). I'm unsure if it leaves an open merge-conflict, but I don't think so.
 
 ## Troubleshooting (in-depth installation)
 

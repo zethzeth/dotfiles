@@ -76,18 +76,51 @@ export PS1='$(pwd|awk -F/ -v "n=$(tput cols)" -v "h=^$HOME" '\''{sub(h,"~");n=0.
 
 
 
-
-
 ### ZSH 
 #
 # Set the theme
 ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="robbyrussell"
 
 # Powerlevel9k config (got from Johan)
 POWERLEVEL9K_DISABLE_RPROMPT="false"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context vcs dir status)
-DEFAULT_USER=${ZUSER}
+
+
+# Host: machine (where am I)
+# set_default POWERLEVEL9K_HOST_TEMPLATE "%m" # THIS GAVE AN ERROR
+prompt_host() {
+  local current_state="LOCAL"
+  typeset -AH host_state
+  if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+    host_state=(
+      "STATE"               "REMOTE"
+      "CONTENT"             "${POWERLEVEL9K_HOST_TEMPLATE}"
+      "BACKGROUND_COLOR"    "${DEFAULT_COLOR}"
+      "FOREGROUND_COLOR"    "yellow"
+      "VISUAL_IDENTIFIER"   "SSH_ICON"
+    )
+  else
+    host_state=(
+      "STATE"               "LOCAL"
+      "CONTENT"             "${POWERLEVEL9K_HOST_TEMPLATE}"
+      "BACKGROUND_COLOR"    "${DEFAULT_COLOR}"
+      "FOREGROUND_COLOR"    "011"
+      "VISUAL_IDENTIFIER"   "HOST_ICON"
+    )
+  fi
+  "$1_prompt_segment" "$0_${host_state[STATE]}" "$2" "${host_state[BACKGROUND_COLOR]}" "${host_state[FOREGROUND_COLOR]}" "${host_state[CONTENT]}" "${host_state[VISUAL_IDENTIFIER]}"
+}
+
+
+if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context vcs dir status)
+else
+	POWERLEVEL9K_HOST_TEMPLATE="%1m"
+	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host vcs dir status)
+fi
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 
 # Enabling a git-plugin, I assume.
 plugins=(git)
@@ -97,6 +130,11 @@ export ZSH=${ZUSERHOMEDIR}/.oh-my-zsh
 
 # I don't know why this has to be sourced... Hmm...
 source $ZSH/oh-my-zsh.sh
+
+
+
+
+
 
 
 
