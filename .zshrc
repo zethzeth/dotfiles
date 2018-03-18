@@ -86,6 +86,12 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_DISABLE_RPROMPT="false"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 
+# Set Powerlevel Colorscheme to either dark or light
+if [ -n "$ZPOWERLEVELTHEMECOLOR" ]; then
+	POWERLEVEL9K_COLOR_SCHEME="$ZPOWERLEVELTHEMECOLOR"
+else
+	POWERLEVEL9K_COLOR_SCHEME='dark'
+fi
 
 # Host: machine (where am I)
 # set_default POWERLEVEL9K_HOST_TEMPLATE "%m" # THIS GAVE AN ERROR
@@ -112,12 +118,12 @@ prompt_host() {
   "$1_prompt_segment" "$0_${host_state[STATE]}" "$2" "${host_state[BACKGROUND_COLOR]}" "${host_state[FOREGROUND_COLOR]}" "${host_state[CONTENT]}" "${host_state[VISUAL_IDENTIFIER]}"
 }
 
-
+# Change the left-prompt-elements, based on if local or SSH
 if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
-	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context vcs dir status)
+	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh context root_indicator vcs dir status)
 else
 	POWERLEVEL9K_HOST_TEMPLATE="%1m"
-	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host vcs dir status)
+	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host root_indicator vcs dir status)
 fi
 
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
