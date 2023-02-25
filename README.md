@@ -1,5 +1,69 @@
 # Zeth's dotfiles
 
+## Todo
+
+ - Finish tutorial: https://laracasts.com/series/neovim-as-a-php-ide/episodes/7
+ - Go through `.zshrc` and add it to the default version of it.
+ - Go through Mike's dotfiles
+
+## Install
+
+### Install-script
+
+Run install-script: `./install`
+
+### Install dependencies
+
+```
+brew install --cask kitty
+brew install ripgrep
+brew install broot
+brew install fd
+brew install bat
+```
+
+### Setup Kitty
+
+Use command: `kitty list-fonts` to see which fonts it can 'see'.  
+The JetBrains NerdFont is nice. 
+
+### Path
+
+Ensure path is good. Something like this:
+
+```
+typeset -U path cdpath fpath
+path=(
+    $HOME/.local/bin
+    /usr/local/bin
+    /usr/local/sbin
+    $HOME/.composer/vendor/bin
+    $HOME/bin
+    $path
+)
+```
+
+### Other tools
+
+```
+popd         # Source: Mike
+```
+
+### Tutorials / Inspiration
+
+- <https://www.youtube.com/watch?v=tB-AgxzBmH8>
+- <https://laracasts.com/series/neovim-as-a-php-ide/episodes/14>
+
+**Other good resources:**
+
+- Quick-start NVIM: <https://github.com/nvim-lua/kickstart.nvim>
+- <https://github.com/nanotee/nvim-lua-guide>
+- Mike's dotfiles: <https://gitlab.peytz.dk/mhy/config_new>
+
+---
+
+## LEGACY
+
 ## Installation
 
 This setup is inspired by this post: [https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/) and this: [https://news.ycombinator.com/item?id=11070797](https://news.ycombinator.com/item?id=11070797) (StreakyCobra's comment).
