@@ -185,7 +185,10 @@ alias .........="cd ../../../../../../../.."
 
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
-
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
+export FZF_DEFAULT_OPTS='--height 100% --border'
+# --layout=reverse
 
 
 
