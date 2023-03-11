@@ -180,11 +180,14 @@ use {
   requires = {'nvim-tree/nvim-web-devicons'}
 }
 
+-- Git signs
+-- Git help
 use({
   'lewis6991/gitsigns.nvim',
   requires = 'nvim-lua/plenary.nvim',
   config = function()
     require('gitsigns').setup({
+      current_line_blame = true,
       sign_priority = 20,
       on_attach = function(bufnr)
         vim.keymap.set('n', ']h', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, buffer = bufnr })
@@ -193,6 +196,76 @@ use({
     })
   end,
 })
+
+use({
+  'nvim-treesitter/nvim-treesitter',
+  run = ':TSUpdate',
+  requires = {
+    'nvim-treesitter/playground',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'JoosepAlviste/nvim-ts-context-commentstring',
+  },
+  config = function()
+    require('user/plugins/treesitter')
+  end,
+})
+
+use({
+  'tpope/vim-fugitive',
+  requires = 'tpope/vim-rhubarb',
+  cmd = 'G',
+})
+
+use({
+  'voldikss/vim-floaterm',
+  config = function()
+    require('user/plugins/floaterm')
+  end,
+})
+
+use({
+  'neovim/nvim-lspconfig',
+  requires = {
+    'b0o/schemastore.nvim',
+    'folke/lsp-colors.nvim',
+  },
+  config = function()
+    require('user/plugins/lspconfig')
+  end,
+})
+
+use({
+  'L3MON4D3/LuaSnip',
+  config = function()
+    require('user/plugins/luasnip')
+  end,
+})
+
+use({
+  'hrsh7th/nvim-cmp',
+  requires = {
+    'L3MON4D3/LuaSnip',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-nvim-lua',
+    'jessarcher/cmp-path',
+    'onsails/lspkind-nvim',
+    'saadparwaiz1/cmp_luasnip',
+  },
+  config = function()
+    require('user/plugins/cmp')
+  end,
+})
+
+use({
+  'jose-elias-alvarez/null-ls.nvim',
+  config = function()
+    require('user/plugins/null-ls')
+  end,
+})
+
 
 -- Check these out!
 -- use('tpope/vim-unimpaired') -- Adds [b and other handy mappings
